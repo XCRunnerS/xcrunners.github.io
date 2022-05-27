@@ -1,139 +1,163 @@
+/*! Section #0 Imports, Vars, Setting basics*/
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Open+Sans&display=swap');
 
 
 :root {
-    --bgColor: #223344;
-    --bgColor2: #090a0f;
-    --accentColor: white;
-
-    /* Colors */
+    /*? Colors */
     /* REF: https://draculatheme.com/contribute */
     --Background-Dark:  #16161f;                /* first loaded color */
     --Background:       #282a36;                /* background color */
-    --Background-Light: #44475a;              /* lighter background color, set to transparent if you use outline */
+    --Background-Light: #44475a;                /* lighter background color, set to transparent if you use outline */
     --Comment:          #6272a4;                /* tagline font color */
     --Foreground:       #f8f8f2;                /* font and outline color */
-    --Accent: var(--Pink);                /* accent color */
-    --Cyan: #8be9fd;
-    --Pink: #ff79c6;
+    --Accent: var(--Pink);                        /* accent color */
+    --Cyan:             #8be9fd;
+    --Pink:             #ff79c6;
+
+    /*? THIS SETS THE BACKGROUND FOR THE LINKS */
+    --Gradiant-bg: 
+                linear-gradient(to right,       /* type of gradiant, dont mess with unless you know abt them*/
+                var(--Background) 0%,           /* left side of idle */
+                var(--Background) 50%,          /* right side of idle */
+                var(--Cyan) 50%,                /* left side of hover */
+                var(--Pink) 100%);              /* right side of hover */
+    
+    --Gradiant-basic: 
+                linear-gradient(to right, 
+                var(--Pink), 
+                var(--Cyan));
 
 
-    --idle-bg: transparent;
-    --hover-bg: var(--Foreground);
-    --active-bg: var(--Background-Dark); /* clicked on */
-
-    --idle-fg: var(--Foreground);
-    --hover-fg: var(--Background);
-    --active-fg: var(--Foreground); /* clicked on */
-
-    /* Font */
+    /*? Font */
     /* REF: https://fonts.google.com/ */
     --font:         'Open Sans', sans-serif;    /* Font (choose your own) */
     --fontweight:   500;                        /* Font Weight (def = 500) */
-    --fontsize:     1.15rem;                    /* Font Size (def = 1rem/16px) */
+    --fontsize:     1.25rem;                    /* Font Size (def = 1rem/16px) */
 
-    /* Assorted */
+    /*? Assorted */
     --bg-img: url('');                          /* If you want to use an image set it here*/
-    --animspeed:    200ms;                      /* Animation/Transition Speed (def = 175ms)*/
+    --speed:    200ms;                      /* Animation/Transition Speed (def = 175ms)*/
     --spacing:      0.9em;                      /* Spacing = used for margin and padding calcs (def = 0.9em) */
     --radius:       1em;                        /* How rounded things are (def = 1rem) */
     --pfpsize:      6rem;                       /* PFP Size (fairly obvious) */
     --borderstyle:
-                    solid                       /* Set this to none to disable border, highly recommend chaning --bgColor */
-                    var(--idle-fg)
+                    solid                       /* Set this to none to disable border/outline, highly recommend chaning --bgColor */
+                    var(--Foreground)
                     3px ;
     
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
     font-family: var(--font);
     background: var(--Background);
     background-image: var(--bg-img);
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     text-decoration: none;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
+/*! Section #1 Main stuff */
 #profilepic, #profilepic img {
     width: var(--pfpsize);
     height: var(--pfpsize);
-    display: block;
     margin: calc(var(--spacing)*2) auto var(--spacing);
+
+    display: block;
     border-radius: 99%;
 }
 #profilepic img{
-    border: var(--borderstyle);
+    border: var(--borderstyle); /* border doesnt like the section there, idk why*/
 }
 
 .username {
-    background: linear-gradient(90deg, var(--Pink), var(--Cyan));
-    -webkit-background-clip: text;
-    background-clip: text; 
-    -webkit-text-fill-color: transparent;
+
+    background: var(--Gradiant-basic);
+    color: var(--Background);
+    border-radius: var(--radius);
 
     font-size: calc(var(--fontsize)*1.5);
     font-weight: calc(var(--fontweight)*2);
-    display: block;
     font-family: var(--font);
-    margin: calc(var(--spacing)*1.5) auto var(--spacing);
+
+    margin: var(--spacing) auto calc(var(--spacing)*0);
+    max-width: calc(var(--spacing)*10);
+    padding: var(--spacing);
+
+    display: block;
     text-align: center;
     text-decoration: none;
-    max-width: calc(var(--spacing)*10);
-    
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #links {
+
     max-width: calc(var(--spacing)*40);
+    margin: calc(var(--spacing)*2) auto;
+
     width: auto;
     display: block;
-    margin: calc(var(--spacing)*2) auto;
+    
 }
 
 .link {
-    background: linear-gradient(to right, var(--Background)0%, var(--Background)50%, var(--Pink) 50%, var(--Cyan) 100%);
+
+    background: var(--Gradiant-bg);
     color: var(--Foreground);
+
     border: var(--borderstyle);
     border-radius: var(--radius);
+
     font-size: var(--fontsize);
     font-weight: var(--fontweight);
-    text-align: center;
-    display: block;
+
     margin: var(--spacing) calc(var(--spacing)*1.5) var(--spacing) calc(var(--spacing)*1.5);
     padding: var(--spacing);
+    transition: var(--speed);
+
+    text-align: center;
+    display: block;
     text-decoration: none;
     background-size: 200% auto;
-    transition: var(--animspeed);
 }
 
 @media (hover: hover) {
     .link:hover {
-        background-position: right center;
+
         color: var(--Background);
+
+        background-position: right center; /* see background gradiant var*/
         background-size: 200% auto;
     }
 }
 
 .link:active {
-    background-color: var(--Background-Dark);
-        color: var(--Foreground);
-    transition: var(--animspeed);
+    color: var(--Foreground);
+    transition: var(--speed);
 }
 
 .hashtag {
+
     color: var(--Comment);
+
     font-size: calc(var(--fontsize)*.90);
-    display: block;
     font-family: var(--font);
-    text-align: center;
+
     margin: var(--spacing) calc(var(--spacing)*1.5) var(--spacing) calc(var(--spacing)*1.5);
     padding: var(--spacing);
+
+    text-align: center;
+    display: block;
 }
 
-/* Section #1 Scrollbar*/
+/* Section #2 Scrollbar*/
 /* Ref: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
 /* width */
