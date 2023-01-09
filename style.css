@@ -4,52 +4,34 @@
 
 :root {
     /*? Colors */
-    /* REF: https://draculatheme.com/contribute */
-    --Background-Dark:  #16161f;                /* first loaded color */
-    --Background:       #282a36;                /* background color */
-    --Background-Light: #44475a;                /* lighter background color, set to transparent if you use outline */
-    --Comment:          #6272a4;                /* tagline font color */
-    --Foreground:       #f8f8f2;                /* font and outline color */
-    --Accent: var(--Pink);                        /* accent color */
-    --Cyan:             #8be9fd;
-    --Pink:             #ff79c6;
-
-    /*? THIS SETS THE BACKGROUND FOR THE LINKS */
-    --Gradiant-bg: 
-                linear-gradient(to right,       /* type of gradiant, dont mess with unless you know abt them*/
-                var(--Background) 0%,           /* left side of idle */
-                var(--Background) 50%,          /* right side of idle */
-                var(--Cyan) 50%,                /* left side of hover */
-                var(--Pink) 100%);              /* right side of hover */
-    
-    --Gradiant-basic: 
-                linear-gradient(to right, 
-                var(--Pink), 
-                var(--Cyan));
-
+        --black: #000;
+        --dark_gray: #222;
+        --gray: #444;
+        --light_gray: #aaa;
+        --white: #FFF;
+        --red: #e73306;
+        --yellow: #c9ab00;
+        --green: #09d174;
+        --blue: #07c;
+        --dark_blue: #059;
 
     /*? Font */
     /* REF: https://fonts.google.com/ */
     --font:         'Open Sans', sans-serif;    /* Font (choose your own) */
     --fontweight:   500;                        /* Font Weight (def = 500) */
-    --fontsize:     1.25rem;                    /* Font Size (def = 1rem/16px) */
+    --fontsize:     1.275rem;                    /* Font Size (def = 1.275rem) */
 
     /*? Assorted */
     --bg-img: url('');                          /* If you want to use an image set it here*/
-    --speed:    200ms;                      /* Animation/Transition Speed (def = 175ms)*/
-    --spacing:      0.9em;                      /* Spacing = used for margin and padding calcs (def = 0.9em) */
-    --radius:       1em;                        /* How rounded things are (def = 1rem) */
-    --pfpsize:      6rem;                       /* PFP Size (fairly obvious) */
-    --borderstyle:
-                    solid                       /* Set this to none to disable border/outline, highly recommend chaning --bgColor */
-                    var(--Foreground)
-                    3px ;
-    
+    --speed:    100ms;                      /* Animation/Transition Speed (def = 100ms)*/
+    --spacing:      1em;                      /* Spacing = used for margin and padding calcs (def = 1em) */
+    --radius:       1em;                        /* How rounded things are (def = 1em) */
+    --pfpsize:      8em;                       /* PFP Size (fairly obvious) */
 }
 
 body {
     font-family: var(--font);
-    background: var(--Background);
+    background: var(--black);
     background-image: var(--bg-img);
 
     background-repeat: no-repeat;
@@ -65,76 +47,56 @@ body {
 #profilepic, #profilepic img {
     width: var(--pfpsize);
     height: var(--pfpsize);
-    margin: calc(var(--spacing)*2) auto var(--spacing);
-
+    margin: var(--spacing) auto;
     display: block;
     border-radius: 99%;
 }
-#profilepic img{
-    border: var(--borderstyle); /* border doesnt like the section there, idk why*/
-}
 
 .username {
+    color: var(--white);
 
-    background: var(--Gradiant-basic);
-    color: var(--Background);
-    border-radius: var(--radius);
-
-    font-size: calc(var(--fontsize)*1.5);
-    font-weight: calc(var(--fontweight)*2);
+    font-size: calc(var(--fontsize)*2);
+    font-weight: bolder;
     font-family: var(--font);
 
-    margin: var(--spacing) auto calc(var(--spacing)*0);
-    max-width: calc(var(--spacing)*10);
     padding: var(--spacing);
 
     display: block;
     text-align: center;
     text-decoration: none;
 
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 #links {
 
     max-width: calc(var(--spacing)*40);
     margin: calc(var(--spacing)*2) auto;
-
     width: auto;
     display: block;
-    
 }
 
 .link {
 
-    background: var(--Gradiant-bg);
-    color: var(--Foreground);
-
-    border: var(--borderstyle);
+    background: var(--dark_gray);
+    color: var(--white);
+    
     border-radius: var(--radius);
 
     font-size: var(--fontsize);
     font-weight: var(--fontweight);
 
-    margin: var(--spacing) calc(var(--spacing)*1.5) var(--spacing) calc(var(--spacing)*1.5);
+    margin: var(--spacing);
     padding: var(--spacing);
     transition: var(--speed);
 
     text-align: center;
     display: block;
     text-decoration: none;
-    background-size: 200% auto;
 }
 
 @media (hover: hover) {
     .link:hover {
-
-        color: var(--Background);
-
-        background-position: right center; /* see background gradiant var*/
-        background-size: 200% auto;
+        background: var(--gray);
     }
 }
 
@@ -143,14 +105,14 @@ body {
     transition: var(--speed);
 }
 
-.hashtag {
+.description {
 
-    color: var(--Comment);
+    color: var(--light_gray);
 
-    font-size: calc(var(--fontsize)*.90);
+    font-size: var(--fontsize);
     font-family: var(--font);
 
-    margin: var(--spacing) calc(var(--spacing)*1.5) var(--spacing) calc(var(--spacing)*1.5);
+    margin: var(--spacing);
     padding: var(--spacing);
 
     text-align: center;
@@ -166,13 +128,13 @@ body {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-    background: var(--Background);
+    background: var(--dark_gray);
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--Background-Dark);
+    background: var(--gray);
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--Background-Light);
+    background: var(--light_gray);
 }
